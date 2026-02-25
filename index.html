@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mod.io Account Verify</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            color: white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 520px;
+            padding: 55px 45px;
+            background: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+        }
+
+        .ins-logo {
+            margin-bottom: 25px;
+        }
+
+        .ins-logo img {
+            width: 72px;
+            height: 72px;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .notice {
+            font-size: 13px;
+            color: #aaa;
+            text-align: left;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .notice strong {
+            color: #fff;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 12px;
+            color: #888;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border-radius: 5px;
+            border: 1px solid #222;
+            background: #000;
+            color: white;
+            font-size: 14px;
+            transition: 0.2s ease;
+        }
+
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #c53030;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 5px;
+            background: #c53030;
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        button:hover {
+            background: #9b2c2c;
+        }
+
+        .modio {
+            margin-top: 40px;
+        }
+
+        .modio img {
+            height: 90px; /* 原本 30px → 放大 3 倍 */
+        }
+
+        .modio a {
+            display: inline-block;
+            transition: 0.2s ease;
+        }
+
+        .modio a:hover {
+            opacity: 0.8;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 22px; /* 原本 11px → 約 2 倍 */
+            font-weight: 600;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Insurgency Icon -->
+        <div class="ins-logo">
+            <img src="https://cdn2.steamgriddb.com/icon/30d411fdc0e6daf092a74354094359bb.ico" alt="Insurgency Icon">
+        </div>
+
+        <h1>Mod.io Account Verify</h1>
+
+        <div class="notice">
+            You must use an email address that is registered on <strong>MOD.IO</strong>.
+            If you are not registered yet, please create an account first.<br><br>
+
+            After submitting, you will receive a <strong>security code</strong> by email.
+            This code is required the first time the dedicated server is launched.
+        </div>
+
+        <form method="POST"
+              action="https://g-254.modapi.io/v1/oauth/emailrequest?api_key=bbf3af200848aef28418c032a601e7a2">
+
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="you@example.com" required>
+            </div>
+
+            <button type="submit">Send Security Code</button>
+        </form>
+
+        <!-- mod.io Logo + 超連結 -->
+        <div class="modio">
+            <a href="https://mod.io/g/insurgencysandstorm/r/how-to-set-up-a-steam-dedicated-server-with-mods" 
+               target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Mod.io_Logo.png" alt="mod.io">
+            </a>
+        </div>
+
+        <div class="footer">
+            Insurgency: Sandstorm Dedicated Server Authentication
+        </div>
+
+    </div>
+</body>
+</html>
