@@ -159,6 +159,10 @@
             <button type="submit">Send Security Code</button>
         </form>
 
+        <!-- 在 form 下方加一個訊息區 -->
+        <div id="responseMessage" style="display:none; margin-top:15px; padding:12px; border-radius:5px; font-size:14px;"></div>
+
+
         <!-- mod.io Logo + 超連結 -->
         <div class="modio">
             <a href="https://mod.io/g/insurgencysandstorm/r/how-to-set-up-a-steam-dedicated-server-with-mods" 
@@ -174,3 +178,52 @@
     </div>
 </body>
 </html>
+
+<script>
+const form = document.querySelector("form");
+const messageDiv = document.getElementById("responseMessage");
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault(); // 阻止頁面刷新
+
+    messageDiv.style.display = "none"; // 隱藏舊訊息
+
+    const formData = new URLSearchParams();
+    formData.append("email", form.email.value);
+
+    try {
+        const response = await fetch(form.action, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: formData.toString()
+        });
+
+        const data = await response.json();
+
+        // 美觀顯示訊息
+        messageDiv.style.display = "block";
+        messageDiv.style.background = "#1a1a1a";
+        messageDiv.style.borderRadius = "5px";
+
+        if (data.code === 200) {
+            messageDiv.style.color = "#00ff7f"; // 綠色成功訊息
+            messageDiv.style.border = "1px solid #00ff7f";
+        } else {
+            messageDiv.style.color = "#ff4c4c"; // 紅色錯誤訊息
+            messageDiv.style.border = "1px solid #ff4c4c";
+        }
+
+        messageDiv.innerText = data.message;
+
+    } catch (err) {
+        messageDiv.style.display = "block";
+        messageDiv.style.color = "#ff4c4c";
+        messageDiv.style.border = "1px solid #ff4c4c";
+        messageDiv.style.background = "#1a1a1a";
+        messageDiv.innerText = "Network error. Please try again later.";
+        console.error(err);
+    }
+});
+</script>
